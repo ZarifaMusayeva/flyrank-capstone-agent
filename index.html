@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zarifa Musayeva | AI & Data Science Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+    <!-- Navbar -->
+    <nav class="p-6 flex justify-between items-center border-b border-gray-800 max-w-6xl mx-auto">
+        <h1 class="text-2xl font-bold text-indigo-400">Zarifa Musayeva</h1>
+        <div class="space-x-4 text-gray-300">
+            <a href="#about" class="hover:text-indigo-400">About</a>
+            <a href="#projects" class="hover:text-indigo-400">Projects</a>
+            <a href="#agent" class="hover:text-indigo-400">AI Agent</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="about" class="max-w-4xl mx-auto py-16 text-center px-4">
+        <h2 class="text-4xl font-extrabold mb-4">Data Scientist & AI Engineer</h2>
+        <p class="text-gray-400 text-lg">Mathematics @ BDU | Ironhack Data & AI Graduate</p>
+        <p class="mt-4 text-gray-300 max-w-2xl mx-auto">
+            Building end-to-end data pipelines, predictive models, and LLM-powered applications. Passionate about machine learning, RAG systems, and AI optimization.
+        </p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="max-w-6xl mx-auto py-12 px-4">
+        <h3 class="text-2xl font-bold mb-6 text-indigo-400 border-b border-gray-800 pb-2">Featured Projects</h3>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                <h4 class="font-bold text-lg mb-2">ArtiLogix</h4>
+                <p class="text-sm text-gray-400">AI-driven logistics platform developed for bootcamp capstone.</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                <h4 class="font-bold text-lg mb-2">StochasPath</h4>
+                <p class="text-sm text-gray-400">Multimodal route optimization using street networks and regression models.</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                <h4 class="font-bold text-lg mb-2">Heat-Pulse</h4>
+                <p class="text-sm text-gray-400">Extreme heatwave risk prediction system with modular feature engineering.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agent Section -->
+    <section id="agent" class="max-w-4xl mx-auto py-12 px-4">
+        <h3 class="text-2xl font-bold mb-4 text-indigo-400 border-b border-gray-800 pb-2">Ask My AI Agent</h3>
+        <div class="bg-gray-800 rounded-lg p-4 border border-gray-700 h-80 flex flex-col justify-between">
+            <div id="chat-box" class="overflow-y-auto space-y-3 mb-4 text-sm p-2">
+                <div class="bg-indigo-900/50 p-3 rounded-lg max-w-xs">Hi! I am Zarifa's AI Agent. Ask me anything about her projects or skills!</div>
+            </div>
+            <div class="flex gap-2">
+                <input id="user-input" type="text" placeholder="e.g., What are Zarifa's top skills?" class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-500">
+                <button onclick="sendMessage()" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-sm font-semibold">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById("user-input");
+            const chatBox = document.getElementById("chat-box");
+            const text = input.value.trim();
+            if(!text) return;
+
+            chatBox.innerHTML += `<div class="bg-gray-700 p-3 rounded-lg max-w-xs ml-auto text-right">${text}</div>`;
+            input.value = "";
+
+            try {
+                // Rendered Backend URL or Local Backend URL
+                const res = await fetch("http://127.0.0.1:8000/chat", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({message: text})
+                });
+                const data = await res.json();
+                chatBox.innerHTML += `<div class="bg-indigo-900/50 p-3 rounded-lg max-w-xs">${data.response}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            } catch (err) {
+                chatBox.innerHTML += `<div class="bg-red-900/50 p-3 rounded-lg max-w-xs">Error connecting to AI Agent.</div>`;
+            }
+        }
+    </script>
+</body>
+</html>
