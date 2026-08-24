@@ -3,86 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zarifa Musayeva | AI & Data Science Portfolio</title>
+    <title>CTR Opportunity Scoring Research Paper | Zarifa Musayeva</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans">
-    <!-- Navbar -->
-    <nav class="p-6 flex justify-between items-center border-b border-gray-800 max-w-6xl mx-auto">
-        <h1 class="text-2xl font-bold text-indigo-400">Zarifa Musayeva</h1>
-        <div class="space-x-4 text-gray-300">
-            <a href="#about" class="hover:text-indigo-400">About</a>
-            <a href="#projects" class="hover:text-indigo-400">Projects</a>
-            <a href="#agent" class="hover:text-indigo-400">AI Agent</a>
-        </div>
-    </nav>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
 
-    <!-- Hero Section -->
-    <section id="about" class="max-w-4xl mx-auto py-16 text-center px-4">
-        <h2 class="text-4xl font-extrabold mb-4">Data Scientist & AI Engineer</h2>
-        <p class="text-gray-400 text-lg">Mathematics @ BDU | Ironhack Data & AI Graduate</p>
-        <p class="mt-4 text-gray-300 max-w-2xl mx-auto">
-            Building end-to-end data pipelines, predictive models, and LLM-powered applications. Passionate about machine learning, RAG systems, and AI optimization.
-        </p>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="max-w-6xl mx-auto py-12 px-4">
-        <h3 class="text-2xl font-bold mb-6 text-indigo-400 border-b border-gray-800 pb-2">Featured Projects</h3>
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                <h4 class="font-bold text-lg mb-2">ArtiLogix</h4>
-                <p class="text-sm text-gray-400">AI-driven logistics platform developed for bootcamp capstone.</p>
-            </div>
-            <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                <h4 class="font-bold text-lg mb-2">StochasPath</h4>
-                <p class="text-sm text-gray-400">Multimodal route optimization using street networks and regression models.</p>
-            </div>
-            <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                <h4 class="font-bold text-lg mb-2">Heat-Pulse</h4>
-                <p class="text-sm text-gray-400">Extreme heatwave risk prediction system with modular feature engineering.</p>
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white py-12 px-6 shadow-md">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl md:text-4xl font-bold mb-3">CTR & Engagement Opportunity Scoring in Search Intelligence</h1>
+            <p class="text-indigo-200 text-lg">A Random Forest Predictive Framework for Content Optimization</p>
+            <div class="mt-4 text-sm text-indigo-300">
+                <span>By Zarifa Musayeva</span> | <span>FlyRank ML Track Capstone</span>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- AI Agent Section -->
-    <section id="agent" class="max-w-4xl mx-auto py-12 px-4">
-        <h3 class="text-2xl font-bold mb-4 text-indigo-400 border-b border-gray-800 pb-2">Ask My AI Agent</h3>
-        <div class="bg-gray-800 rounded-lg p-4 border border-gray-700 h-80 flex flex-col justify-between">
-            <div id="chat-box" class="overflow-y-auto space-y-3 mb-4 text-sm p-2">
-                <div class="bg-indigo-900/50 p-3 rounded-lg max-w-xs">Hi! I am Zarifa's AI Agent. Ask me anything about her projects or skills!</div>
+    <main class="max-w-4xl mx-auto py-10 px-6 space-y-12">
+
+        <!-- 1. Title + Abstract -->
+        <section class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+            <h2 class="text-xl font-bold text-indigo-900 border-b pb-2 mb-4">1. Abstract</h2>
+            <p class="text-gray-700">
+                This study addresses the problem of identifying underperforming web pages that capture fewer search clicks than expected given their impressions and ranking position. Using the FlyRank Search Intelligence dataset, we engineered features and trained a Random Forest Regressor to predict baseline click performance. Our model achieved an R² score of 0.5638, significantly outperforming the naive baseline MSE (259.72 vs 595.51). By calculating the residual gap between expected and actual performance, we built an automated Opportunity Score engine. This provides actionable content optimization recommendations to maximize organic visibility and CTR.
+            </p>
+        </section>
+
+        <!-- 2. Problem Statement -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-3">2. Introduction & Problem Statement</h2>
+            <p class="text-gray-700">
+                Digital marketing and SEO teams often struggle to prioritize which content assets require optimization. While high impression counts indicate good query visibility, low click-through rates (CTR) highlight a failure to capture search intent. This research provides a decision-support system that quantifies underperformance, allowing content teams to focus resources on pages with the highest unrealized click potential.
+            </p>
+        </section>
+
+        <!-- 3. Data -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-3">3. Data Source & Preparation</h2>
+            <p class="text-gray-700 mb-3">
+                The analysis was conducted on the <code>FlyRank/internship-warehouse</code> release using the <code>fact_content_daily_performance</code> table. 
+            </p>
+            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                <li><strong>Sample Size:</strong> 50,000 daily performance records.</li>
+                <li><strong>Filters:</strong> Excluded entries with impressions ≤ 100 and missing position metrics to eliminate noise.</li>
+                <li><strong>Features Utilized:</strong> <code>gsc_sum_position</code>, <code>gsc_impressions</code>.</li>
+                <li><strong>Target Label:</strong> <code>gsc_clicks</code>.</li>
+            </ul>
+        </section>
+
+        <!-- 4. Methodology -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-3">4. Methodology</h2>
+            <p class="text-gray-700 mb-4">
+                We framed the task as a non-linear regression problem. The dataset was split into an 80/20 train-test ratio. We selected a Random Forest Regressor (100 estimators) to capture non-linear relationships between search ranking position and click generation.
+            </p>
+            <div class="bg-gray-100 p-4 rounded-md border-l-4 border-indigo-600">
+                <p class="font-mono text-sm"><strong>Opportunity Score Calculation:</strong></p>
+                <p class="font-mono text-sm text-indigo-800">Opportunity Score = Predicted Clicks - Actual Clicks</p>
             </div>
-            <div class="flex gap-2">
-                <input id="user-input" type="text" placeholder="e.g., What are Zarifa's top skills?" class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-500">
-                <button onclick="sendMessage()" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-sm font-semibold">Send</button>
+        </section>
+
+        <!-- 5. Results -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-3">5. Results & Validation</h2>
+            <p class="text-gray-700 mb-4">
+                The Random Forest model demonstrated strong predictive power over the mean-baseline model:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+                    <p class="text-sm text-gray-500">Model MSE</p>
+                    <p class="text-2xl font-bold text-indigo-900">259.72</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg border border-gray-200">
+                    <p class="text-sm text-gray-500">Baseline MSE</p>
+                    <p class="text-2xl font-bold text-gray-700">595.51</p>
+                </div>
+                <div class="bg-emerald-50 p-4 rounded-lg border border-emerald-100">
+                    <p class="text-sm text-gray-500">R² Score</p>
+                    <p class="text-2xl font-bold text-emerald-800">0.5638</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <script>
-        async function sendMessage() {
-            const input = document.getElementById("user-input");
-            const chatBox = document.getElementById("chat-box");
-            const text = input.value.trim();
-            if(!text) return;
+        <!-- 6. Limitations -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-3">6. Limitations & Honest Framing</h2>
+            <p class="text-gray-700">
+                The model relies primarily on positional and impression metrics without incorporating qualitative content factors such as title tag sentiment or search intent seasonality. Results should be interpreted as directional decision support rather than exact predictive guarantees.
+            </p>
+        </section>
 
-            chatBox.innerHTML += `<div class="bg-gray-700 p-3 rounded-lg max-w-xs ml-auto text-right">${text}</div>`;
-            input.value = "";
+        <!-- 7. Ranked Recommendations -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-3">7. Ranked Recommendations Playbook</h2>
+            <p class="text-gray-700 mb-4">Top 10 Priority Content Opportunities Identified by the Engine:</p>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm border-collapse bg-white shadow-sm">
+                    <thead>
+                        <tr class="bg-gray-800 text-white">
+                            <th class="p-3">Rank</th>
+                            <th class="p-3">Impressions</th>
+                            <th class="p-3">Position</th>
+                            <th class="p-3">Actual Clicks</th>
+                            <th class="p-3">Predicted Clicks</th>
+                            <th class="p-3">Opportunity Score</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 text-gray-700">
+                        <tr><td class="p-3 font-bold">1</td><td class="p-3">255</td><td class="p-3">1017.0</td><td class="p-3">11</td><td class="p-3">506.16</td><td class="p-3 text-emerald-600 font-bold">+251.16</td></tr>
+                        <tr><td class="p-3 font-bold">2</td><td class="p-3">79</td><td class="p-3">3285.0</td><td class="p-3">2</td><td class="p-3">223.94</td><td class="p-3 text-emerald-600 font-bold">+144.94</td></tr>
+                        <tr><td class="p-3 font-bold">3</td><td class="p-3">22</td><td class="p-3">795.0</td><td class="p-3">2</td><td class="p-3">156.23</td><td class="p-3 text-emerald-600 font-bold">+134.23</td></tr>
+                        <tr><td class="p-3 font-bold">4</td><td class="p-3">95</td><td class="p-3">452.0</td><td class="p-3">5</td><td class="p-3">217.13</td><td class="p-3 text-emerald-600 font-bold">+122.13</td></tr>
+                        <tr><td class="p-3 font-bold">5</td><td class="p-3">60</td><td class="p-3">4482.0</td><td class="p-3">0</td><td class="p-3">178.87</td><td class="p-3 text-emerald-600 font-bold">+118.87</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-            try {
-                // Rendered Backend URL or Local Backend URL
-                const res = await fetch("http://127.0.0.1:8000/chat", {
-                    method: "POST",
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify({message: text})
-                });
-                const data = await res.json();
-                chatBox.innerHTML += `<div class="bg-indigo-900/50 p-3 rounded-lg max-w-xs">${data.response}</div>`;
-                chatBox.scrollTop = chatBox.scrollHeight;
-            } catch (err) {
-                chatBox.innerHTML += `<div class="bg-red-900/50 p-3 rounded-lg max-w-xs">Error connecting to AI Agent.</div>`;
-            }
-        }
-    </script>
+        <!-- 8. Reproducibility -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-3">8. Reproducibility</h2>
+            <p class="text-gray-700">
+                All source code, data preprocessing pipelines, and model evaluation notebooks are open-source and available in the GitHub repository: 
+                <a href="https://github.com/ZarifaMusayeva/flyrank-capstone-agent" class="text-indigo-600 underline font-semibold" target="_blank">Repository Link</a>
+            </p>
+        </section>
+
+        <!-- 9. Acknowledgments -->
+        <section class="border-t pt-6 text-sm text-gray-600">
+            <h2 class="text-lg font-bold text-gray-800 mb-2">9. Acknowledgments & Data Credit</h2>
+            <p>
+                Built on the <a href="https://flyrank.ai" class="text-indigo-600 underline" target="_blank">FlyRank ML Internship dataset</a>.
+            </p>
+        </section>
+
+    </main>
+
 </body>
 </html>
